@@ -1,0 +1,945 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Aos styled_link -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+        <link href="main/style.css" rel="stylesheet">
+        <link href="main/dropdown.css" rel="stylesheet">
+        <link href="main/add.css" rel="stylesheet">
+        <title>TechSnap</title>
+        <link rel="shortcut icon" type="image/png" href="{% static 'assets/main/favicon.png'%}">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-L4D2PNVR8Z"></script>
+        <script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-L4D2PNVR8Z');
+        </script>
+    </head>
+    <body>
+        <div class="mainBody">
+            <!-- /----------------------menuphone---------->
+            <div class="dropMenu">
+                <ul>
+                    <li>
+                        <a href="##">Catalog »</a>
+                    </li>
+                    <li onclick="products()">
+                        <a href="##">Products »</a>
+                    </li>
+                    <li>
+                        <a href="##">Career paths »</a>
+                    </li>
+                    <li>
+                        <a href="##">Resources »</a>
+                    </li>
+                    <li>
+                        <a href="##">For Business »</a>
+                    </li>
+                    <div class="mob1">
+                        {% if user.is_authenticated %}
+                        <p>Hi, {{user.username}}</p>
+                        <a href="{% url 'update' user.profile.id %}">Edit</a>
+                        <a href="{% url 'logout' %}">
+                            <button class="btn" id="logout">LogOut</button>
+                        </a>
+                        {% else %}
+                        <a href="{% url 'login' %}">
+                            <button class="btn" id="login">LogIn</button>
+                        </a>
+                    </div>
+                    <a href="{% url 'register' %}">
+                        <button class="btn1" id="btn1">Register</button>
+                    </a>
+                    {% endif %}
+                </ul>
+                <div class="Close">X</div>
+            </div>
+            <!-- //---------------------------------- -->
+            <div class="header">
+                <div class="sub_header">
+                    <div class="logo">
+                        <img src="{% static 'assets/main/logo.png'%}" alt="logo">
+                    </div>
+                    <div class="menu_item">
+                        <ul>
+                            <li onclick="catalog()">
+                                <a href="##" class="nav_item">Catalog
+                                </a>
+                                <span class="nav_item">⌵</span>
+                            </li>
+                            <li onclick="products()">
+                                <a href="##" class="nav_item">Products
+                                </a
+								>
+                                <span class="nav_item">⌵</span>
+                            </li>
+                            <li onclick="careerPath()">
+                                <a href="##" class="nav_item">Career paths
+                                </a
+								>
+                                <span class="nav_item">⌵</span>
+                            </li>
+                            <li onclick="resources()">
+                                <a href="##" class="nav_item">Resources
+                                </a
+								>
+                                <span class="nav_item">⌵</span>
+                            </li>
+                            <li onclick="business()">
+                                <a href="##" class="nav_item">For Business
+                                </a
+								>
+                                <span class="nav_item">⌵</span>
+                            </li>
+                        </ul>
+                        <div class="buttons">
+                            {% if user.is_authenticated %}
+                            <p>Hi, {{user.username}}</p>
+                            <a href="{% url 'update' user.profile.id %}">Edit</a>
+                            <a href="{% url 'logout' %}">
+                                <button id="logout">LogOut</button>
+                            </a>
+                            {% else %}
+                            <a href="{% url 'login' %}">
+                                <button id="login">LogIn</button>
+                            </a>
+                            <a href="{% url 'register' %}">
+                                <button id="register">Register</button>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="ham">
+                        <img src="{% static 'assets/main/menu.png'%}" alt="menu">
+                    </div>
+                </div>
+            </div>
+
+            <div class="dropdown-container">
+                <div class="dropdown-main">
+                    <div class="dropdown-main-2-desc">
+                        <ul>
+                            <li>
+                                <a href="##" class="dropdown-nav-item">
+                                    About
+                                </a>
+                            </li>
+                            <li>
+                                <a href="##" class="dropdown-nav-item">
+                                    FORUM
+                                </a>
+                            </li>
+                            <li>
+                                <a href="##" class="dropdown-nav-item">
+                                    Our people
+                                </a>
+                            </li>
+                            <li>
+                                <a href="##" class="dropdown-nav-item">
+                                    Contact
+                                </a>
+                            </li>
+                            <li>
+                                <a href="##" class="dropdown-nav-item">
+                                    Learner Stories
+                                </a>
+                            </li>
+                            <li>
+                                <a href="##" class="dropdown-nav-item">
+                                    Fellowship
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown-main-4-desc">
+                        <ul>
+                            <li>
+                                <a href="##" class="dropdown-nav-item">
+                                    Cheatsheets
+                                </a>
+                            </li>
+                            <li>
+                                <a href="##" class="dropdown-nav-item">
+                                    Blogs
+                                </a>
+                            </li>
+                            <li>
+                                <a href="##" class="dropdown-nav-item">
+                                Mock Interview
+                                </a> 
+                            </li>
+                            <li>
+                                <a href="##" class="dropdown-nav-item">
+                                    Events
+                                </a>
+                            </li>
+                            <li>
+                                <a href="##" class="dropdown-nav-item">
+                                    Webinar
+                                </a>
+                            </li>
+                            <li>
+                                <a href="##" class="dropdown-nav-item">
+                                    Challenges
+                                </a>
+                            </li>
+                            <li>
+                                <a href="##" class="dropdown-nav-item">
+                                    Projects
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown-main-5-desc">
+                        <ul>
+                            <li>
+                                <a href="##" class="dropdown-nav-item">
+                                    For Individual
+                                </a>
+                            </li>
+                            <li>
+                                <a href="##" class="dropdown-nav-item">
+                                    For Student
+                                </a>
+                            </li>
+                            <li>
+                                <a href="##" class="dropdown-nav-item">
+                                    For Universities
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                 </div>
+            </div>
+
+
+            
+            <!-- ----------------------------------------------------- -->
+            <div class="hero_container">
+                <section class="Hero_section">
+                    <div class="Hero_title">
+                        <div>
+                            <h1>Choose your career &</h1>
+                            <h1>start your Project
+                                <span>Now</span>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="Hero_img" data-aos="fade-up"></div>
+                </section>
+            </div>
+            <!-- //----------------------------- -->
+            <div class="yellow_container">
+                <section class="yellow_section">
+                    <!-- <img src="Assets/yellow.svg" alt="yellow svg" /> -->
+                    <div class="yellow_left" data-aos="fade-right">
+                        <div class="yellow_text_zone">
+                            <p>Want to choose your job description ? Confused what to choose ?</p>
+                            <p>
+                                Donno whom to ask ? Donno where to start ? Donno what to do ???
+                            </p>
+                            <h1>Wait !</h1>
+                            <h2>No need to worry</h2>
+                            <h2>We help you to get through all these things !</h2>
+                        </div>
+                        <div class="blue-button">
+                            <button><a class="explore" href="{% url 'community' %}">Explore all</a></button>
+                        </div>
+                    </div>
+                    <div class="yellow_right" data-aos="fade-left"></div>
+                </section>
+            </div>
+            <!-- ------------------------Timeline ------------------------------>
+            <div class="Path_container">
+                <div class="Path_Box">
+                    <div class="Left_section">
+                        <div class="text_section">
+                            <h1>How TechSnap</h1>
+                            <h1>Works
+                                <span>!</span>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="right_section">
+                        <div class="time_line" data-aos="fade-left">
+                            <div class="timeLine_Item Pink">
+                                <div class="Image">
+                                    <img src="{% static 'assets/main/carrer.svg'%}" alt="pix">
+                                </div>
+                                <div class="textZone">
+                                    <div class="title Pink">
+                                        <h3>Choose Career Path »</h3>
+                                    </div>
+                                    <div class="details">
+                                        Choose your career based on your skills and interests in field
+                                    </div>
+                                </div>
+                                <div class="timeline_arrow">
+                                    ↓
+                                </div>
+                            </div>
+                            <!-- ---------------------------- -->
+                            <div class="timeLine_Item Blue">
+                                <div class="Image">
+                                    <img src="{% static 'assets/main/courses.svg'%}" alt="pix">
+                                </div>
+                                <div class="textZone">
+                                    <div class="title">
+                                        <h3>Take Courses »</h3>
+                                    </div>
+                                    <div class="details">
+                                        We provide courses in three different formats like blogs,
+									video and live mentorship
+                                    </div>
+                                </div>
+                                <div class="timeline_arrow">
+                                    ↓
+                                </div>
+                            </div>
+                            <!-- ---------------------------------- -->
+                            <div class="timeLine_Item Yellow">
+                                <div class="Image">
+                                    <img src="{% static 'assets/main/projects.svg'%}" alt="pix">
+                                </div>
+                                <div class="textZone">
+                                    <div class="title">
+                                        <h3>Apply & Do Projects »</h3>
+                                    </div>
+                                    <div class="details">
+                                        Apply your learned skills and build some real world
+									applications
+                                    </div>
+                                </div>
+                                <div class="timeline_arrow">
+                                    ↓
+                                </div>
+                            </div>
+                            <!-- //---------------------------- -->
+                            <div class="timeLine_Item Green">
+                                <div class="Image">
+                                    <img src="{% static 'assets/main/achieve.svg'%}" alt="pix">
+                                </div>
+                                <div class="textZone">
+                                    <div class="title">
+                                        <h3>Achieve Your Designation »</h3>
+                                    </div>
+                                    <div class="details">
+                                        Land on your dream career with experience and projects
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ---------------------------- -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ///----------------------------------------------------- -->
+            <div class="card_container">
+                <section class="card_section">
+                    <h1>Techsnap's Career Paths</h1>
+                    <div class="cards_holder" data-aos="fade-left">
+                        <!---------------Card ---->
+                        <div class="card ">
+                            <div class="card_header card_green">
+                                <img src="{% static 'assets/main/finger.png'%}" alt="finger">
+                                <h1>Data scientist</h1>
+                            </div>
+                            <div class="card_footer">
+                                <p>A professional responsible for collecting, analyzing and interpreting extremely large amounts of data</p>
+                                <a href="{% url 'careerpath' %}">
+                                    <button class="card_green">></button>
+                                </a>
+                            </div>
+                        </div>
+                        <!---------------Card ---->
+                        <div class="card">
+                            <div class="card_header card_yellow">
+                                <img src="{% static 'assets/main/Vector.svg'%}" alt="finger">
+                                <h1>Frontend Developer</h1>
+                            </div>
+                            <div class="card_footer">
+                                <p>A software engineer who implements web designs through languages like HTML CSS and JavaScript.</p>
+                                <a href="{% url 'careerpath' %}">
+                                    <button class="card_yellow">></button>
+                                </a>
+                            </div>
+                        </div>
+                        <!---------------Card ---->
+                        <div class="card">
+                            <div class="card_header card_pink">
+                                <img src="{% static 'assets/main/Vector1.svg'%}" alt="finger">
+                                <h1>DevOps Engineer</h1>
+                            </div>
+                            <div class="card_footer">
+                                <p>An IT generalist who works with software developers, system operators and other production IT staff</p>
+                                <a href="{% url 'careerpath' %}">
+                                    <button class="card_pink">></button>
+                                </a>
+                            </div>
+                        </div>
+                        <!---------------Card ---->
+                        <div class="card ">
+                            <div class="card_header card_emo1">
+                                <img src="{% static 'assets/main/Vector3.svg'%}" alt="finger">
+                                <h1>Fullstack Developer</h1>
+                            </div>
+                            <div class="card_footer">
+                                <p>A Developer who works with the Back End or server side of the application as well as the Front End or client side</p>
+                                <a href="{% url 'careerpath' %}">
+                                    <button class="card_emo1">></button>
+                                </a>
+                            </div>
+                        </div>
+                        <!---------------Card ---->
+                        <div class="card">
+                            <div class="card_header card_emo2">
+                                <img src="{% static 'assets/main/Vector2.svg'%}" alt="finger">
+                                <h1>Cloud Engineer</h1>
+                            </div>
+                            <div class="card_footer">
+                                <p>An IT professional who is responsible for any tech duties associated with cloud computing</p>
+                                <a href="{% url 'careerpath' %}">
+                                    <button class="card_emo2">></button>
+                                </a>
+                            </div>
+                        </div>
+                        <!---------------Card ---->
+                        <div class="card">
+                            <div class="card_header card_emo3">
+                                <img src="{% static 'assets/main/Vector4.svg'%}" alt="finger">
+                                <h1>App Developer</h1>
+                            </div>
+                            <div class="card_footer">
+                                <p>A mobile app developer designs, creates, and updates mobile applications, whether on Android or iOS.</p>
+                                <a href="{% url 'careerpath' %}">
+                                    <button class="card_emo3">></button>
+                                </a>
+                            </div>
+                        </div>
+                        <!---------------Card ---->
+                        <div class="card_button">
+                            <a class="explore"href="{% url 'careerpath' %}">
+                                <p>Explore All »</p>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+                <!-- //----------------------------freeecourse--------6-cards---------------------------------------- -->
+<div class="free_course_contanier">
+	<div class="free_course">
+		<div class="free_course_head">
+			<h2>TechSnap Courses</h2>
+		</div>
+		<div class="free_course_body">
+			<div class="free_course_Left_section">
+				<div class="free_course_card_section">
+					<a href="{% url 'community' %}" style="text-decoration: none; color: black;"><div class="free_course_card Green_card">
+						<h4>SQL</h4>
+						<h5>Visit &gt;&gt;</h5>
+					</div></a>
+                            <a href="{% url 'community' %}" style="text-decoration: none; color: black;">
+                                <div class="free_course_card Pink_card">
+                                    <h4>HTML</h4>
+                                    <h5>Visit &gt;&gt;</h5>
+                                </div>
+                            </a>
+                            <a href="{% url 'community' %}" style="text-decoration: none; color: black;">
+                                <div class="free_course_card Blue_card">
+                                    <h4>C++</h4>
+                                    <h5>Visit &gt;&gt;</h5>
+                                </div>
+                            </a>
+                            <a href="{% url 'community' %}" style="text-decoration: none; color: black;">
+                                <div class="free_course_card Pur_card">
+                                    <h4>React</h4>
+                                    <h5>Visit &gt;&gt;</h5>
+                                </div>
+                            </a>
+                            <a href="{% url 'community' %}" style="text-decoration: none; color: black;">
+                                <div class="free_course_card Rose_card">
+                                    <h4>Python</h4>
+                                    <h5>Visit &gt;&gt;</h5>
+                                </div>
+                            </a>
+                            <a href="{% url 'community' %}" style="text-decoration: none; color: black;">
+                                <div class="free_course_card Yellow_card">
+                                    <h4>GitHub</h4>
+                                    <h5>Visit &gt;&gt;</h5>
+                                </div>
+                            </a>
+                </div>
+            </div>
+            <div class="free_course_Right_section">
+                <div class="free_course_Text_box">
+                    <h2>Learn From Well Organized and Optimised Tutorials</h2>
+                    <p>Start to Learn and code with our beginner-friendly tutorials and examples. Read tutorials, try examples, write programs and apply them to solve problems</p>
+                    <button class="custom-btn btn-14 "><a class="exp"  href="{% url 'community' %}">Explore</a></button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+                <!-- ///// -->
+                <!-- ///-----------------------------onlineCourse----- -->
+                <div class="online_course_Container">
+                    <div class="online_course">
+                        <div class="online_course_body">
+                            <div class="online_course_Left_section">
+                                <div class="online_course_card_container">
+                                    <div class="online_course_card">
+                                        <div class="online_course_text">
+                                            <h2>Data Science</h2>
+                                            <p>Beginners  friendly</p>
+                                        </div>
+                                        <div class="online_course_card_Image">
+                                            <img src="https://assets-global.website-files.com/5deb974b5176872b2c106aba/5e3c3add630a1585791ff8a9_4dda7c5dc3564bce88dfa5114c53a774.png" alt="pix">
+                                        </div>
+                                        <div class="Online_course_footer">
+                                            <p>- Certificate of Completion</p>
+                                        </div>
+                                    </div>
+                                    <div class="online_course_card">
+                                        <div class="online_course_text">
+                                            <h2>Frontend Development</h2>
+                                            <p>Beginners  friendly</p>
+                                        </div>
+                                        <div class="online_course_card_Image">
+                                            <img src="https://semidotinfotech.com/web/images/frontend_graphic.png" alt="pix">
+                                        </div>
+                                        <div class="Online_course_footer">
+                                            <p>- Certificate of Completion</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="online_course_Right_section">
+                                <div class="free_course_Text_box">
+                                    <h2>Learn from Live courses with best Mentors</h2>
+                                    <p>Our online courses provide you with an affordable and flexible way to learn new skills and study new emerging technologies</p>
+                                    <button class="custom-btn btn-14 "><a class="exp" href="{% url 'community' %}">Explore</a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //----------------------------threeecard -->
+                <div class="online_course_Container threecard_Container">
+                    <div class="free_course_head threecard_title">
+                        <h2>Techsnaps live Project Trainings</h2>
+                    </div>
+                    <div class="online_course">
+                        <div class="online_course_body ">
+                            <div class="online_course_Left_section three_card_body">
+                                <div class="online_course_card_container three_card_body_card_conatiner">
+                                    <div class="online_course_card">
+                                        <div class="online_course_text">
+                                            <h2>Machine learning</h2>
+                                            <p>Beginners  friendly</p>
+                                        </div>
+                                        <div class="online_course_card_Image">
+                                            <img src="https://miro.medium.com/max/1400/1*c_fiB-YgbnMl6nntYGBMHQ.jpeg" alt="pix">
+                                        </div>
+                                        <div class="Online_course_footer">
+                                            <p>- Certificate of Completion</p>
+                                        </div>
+                                    </div>
+                                    <div class="online_course_card">
+                                        <div class="online_course_text">
+                                            <h2>Web Development</h2>
+                                            <p>Beginners  friendly</p>
+                                        </div>
+                                        <div class="online_course_card_Image">
+                                            <img src="https://fullscale.io/blog/wp-content/uploads/2019/04/full-scale-blog-front-end-tools-for-web-development.jpg" alt="pix">
+                                        </div>
+                                        <div class="Online_course_footer">
+                                            <p>- Certificate of Completion</p>
+                                        </div>
+                                    </div>
+                                    <div class="online_course_card">
+                                        <div class="online_course_text">
+                                            <h2>Data Analytics</h2>
+                                            <p>Beginners  friendly</p>
+                                        </div>
+                                        <div class="online_course_card_Image">
+                                            <img src="https://images.ctfassets.net/3viuren4us1n/46LXZuNsiE6Ub7T7eqpNLH/2c781365421543368119c06c17179a46/Data_story_-_resized.jpg" alt="pix">
+                                        </div>
+                                        <div class="Online_course_footer">
+                                            <p>- Certificate of Completion</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- -----------------------exercise-------------------
+<section class="exercise-section">
+	<div class="exercise-header">
+		<h1>Exercise and Quiz</h1>
+	</div>
+	<div class="exercises-body">
+		<div class="exercises-card">
+		</div>
+		<div class="exercises-card skin">
+		</div>
+		<div class="exercises-card skin">
+		</div>
+	</div>
+</section>  -->
+                <section class="section-10">
+                    <section class="box-10">
+                        <div class="content-10">
+                            <h1>Get Involved and Contribute</h1>
+                            <h4>Join our Techsnap Community !</h4>
+                        </div>
+                        <div class="content-2-1">
+                            <div class="flex-box-1">
+                                <h2>Educator</h2>
+                                <a href="{% url 'contact' %}">Contact</a>
+                            </div>
+                            <div class="flex-box-2">
+                                <h2>Part-time Instructor</h2>
+                                <a href="{% url 'contact' %}">Contact</a>
+                            </div>
+                            <div class="flex-box-3">
+                                <h2>Student</h2>
+                                <a href="{% url 'contact' %}">Contact</a>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+                <!-- --------------------News_section -->
+                <div class="News_section_container ">
+                    <div class="News_section_container_heading">
+                        <h1>What's Happening At Techsnap</h1>
+                    </div>
+                    <div class="splide">
+                        <div class="splide__track">
+                            <div class="News_Section splide__list">
+                                <div class="News_sectionCard splide__slide">
+                                    <div class="News_sectionCard_Image ">
+                                        <img src="https://i.ytimg.com/vi/pHiMN_gy9mk/maxresdefault.jpg" alt="pix">
+                                    </div>
+                                    <div class="News_sectionCard_Text">
+                                        <div class="News_sectionCard_Text_Zone">
+                                            <p>October 12,2021</p>
+                                            <h3>
+                                                Complete roadmap to become machine leanrning engineer will relase in the coming season
+                                            </h3>
+                                        </div>
+                                        <div class="News_sectionCard_Text_buttonZone">
+                                            <Button>Read More</Button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ------------------- -->
+                                <div class="News_sectionCard splide__slide">
+                                    <div class="News_sectionCard_Image">
+                                        <img src="{% static 'assets/were-hiring-red-banner-employee-vacancy-vector-31048179.jpg'%}" alt="pix">
+                                    </div>
+                                    <div class="News_sectionCard_Text">
+                                        <div class="News_sectionCard_Text_Zone">
+                                            <p>October 27,2021</p>
+                                            <h3>
+                                                We are about to hire interns from next month for various roles
+                                            </h3>
+                                        </div>
+                                        <div class="News_sectionCard_Text_buttonZone">
+                                            <Button>Apply</Button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ------------------- -->
+                                <!-- ------------------- -->
+                                <div class="News_sectionCard splide__slide">
+                                    <div class="News_sectionCard_Image">
+                                        <img src="https://www.freecodecamp.org/news/content/images/2021/01/Blue-and-Ivory-Photo-Musician-Influencer-Digital-Brutalism-YouTube-Thumbnail-Set.png" alt="pix">
+                                    </div>
+                                    <div class="News_sectionCard_Text">
+                                        <div class="News_sectionCard_Text_Zone">
+                                            <p>October 12,2021</p>
+                                            <h3>
+                                                Complete roadmap to become Data scientist will relase in the coming season
+                                            </h3>
+                                        </div>
+                                        <div class="News_sectionCard_Text_buttonZone">
+                                            <Button>Read More</Button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ------------------- -->
+                                <div class="News_sectionCard splide__slide">
+                                    <div class="News_sectionCard_Image">
+                                        <img src="https://act-on.com/wp-content/uploads/2015/07/blogging-SMB.png" alt="pix">
+                                    </div>
+                                    <div class="News_sectionCard_Text">
+                                        <div class="News_sectionCard_Text_Zone">
+                                            <p>September 30,2021</p>
+                                            <h3>
+                                                Techsnap Dev Blogs,We keep you at top of your game,releasing soon
+                                            </h3>
+                                        </div>
+                                        <div class="News_sectionCard_Text_buttonZone">
+                                            <Button>Read More</Button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ------------------- -->
+                                <div class="News_sectionCard splide__slide">
+                                    <div class="News_sectionCard_Image">
+                                        <img src="https://images.squarespace-cdn.com/content/v1/559ac368e4b07aaa857eaa39/1584659215881-NOA0JAJ566B7N29H4QTG/newsletter+concept+on+laptop%2C+tablet+and+smartphone+screen+-+iStock-1125874550.jpg?format=1500w" alt="pix">
+                                    </div>
+                                    <div class="News_sectionCard_Text">
+                                        <div class="News_sectionCard_Text_Zone">
+                                            <p>November 2,2021</p>
+                                            <h3>
+                                                Subscribe to our newsletter and never miss update from us
+                                            </h3>
+                                        </div>
+                                        <div class="News_sectionCard_Text_buttonZone">
+                                            <Button>subscribe</Button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-----------------------------------contact-us-------------- -->
+                <div class="contact-us-container" style="background-image: url(https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80);">
+                    <section class="contact-us-section">
+                        <div class="contact-us-left">
+                            <h1>
+                                Achieve your career goals
+                                <span>with confidence.</span>
+                            </h1>
+                            <p>Create your Techsnap account →</p>
+                        </div>
+                        <div class="contact-us-right">
+                            <div class="contact-us-form-holder">
+                                <h1>Create Your Free Account</h1>
+                                <div class="contact-us-accounts">
+                                    <a class="contact-us-social-media-buttons" href="{% url 'social:begin' 'google-oauth2' %}?next={{request.GET.next}}">
+                                        <img src="{% static 'assets/main/google.svg'%}" alt="socail">
+                                        <p>Google</p>
+                                    </a>
+                                    <a class="contact-us-social-media-buttons" href="{% url 'social:begin' 'facebook' %}?next={{request.GET.next}}">
+                                        <img src="{% static 'assets/main/facebook.svg'%}" alt="socail">
+                                        <p>Facebook</p>
+                                    </a>
+                                    <a class="contact-us-social-media-buttons" href="{% url 'social:begin' 'linkedin-oauth2' %}?next={{request.GET.next}}">
+                                        <img src="{% static 'assets/main/linkedin.svg'%}" alt="socail">
+                                        <p>Linkedin</p>
+                                    </a>
+                                </div>
+                                <div class="contact-us-or-line">
+                                    <hr></hr>
+                                <p>or</p>
+                            </div>
+                            <form action="{% url 'register' %}" method="POST">
+                                <label>Username</label>
+                                <input
+                                    type="text"
+                                    placeholder="Username"
+                                    name="username"
+                                    required
+                                >
+                                <label>Email Address</label>
+                                <input
+                                    type="email"
+                                    placeholder="Email"
+                                    name="email"
+                                    required
+                                >
+                                <label>Password</label>
+                                <input
+                                    type="password"
+                                    placeholder="Password"
+                                    name="password"
+                                    required
+                                >
+                                <button type="submit">Start Learning For Free</button>
+                            </form>
+                            <div class="contact-us-footer">
+                                <p>
+                                    Have Account ?
+                                    <a href="{% url 'login' %}">Login Here</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- ----------------------------------------------------- -->
+            <!-- ---------------------------- -->
+        </div>
+        <div class="footer_MainBox">
+            <div class="Footer_page">
+                <footer class="Footer_conatiner">
+                    <div class="Footer_header">
+                        <img src="{% static 'assets/main/logo.png'%}" alt="Logo">
+                        <br>
+                        <br>
+                        <p>We are here to endure your muddled stages of knowing the trends while pursuing UG-CSE.
+                        </br>we help you to know about trending jobs and required skills for achieving one particular designation</p>
+                    <br>
+                    <p>We will succour you in submitting your university projects as well as steer you with free tutorials, online courses, live courses and career paths</p>
+                </div>
+                <div class="Footer_columns_holder">
+                    <div class="Footer_columns">
+                        <h1>Company</h1>
+                        <a href="{% url 'aboutus' %}">About us</a>
+                        <a href="{% url 'learnerstories' %}">Learner stories</a>
+                        <a href="{% url 'boardmembers' %}">our people</a>
+                        <a href="{% url 'job_test:jobslist' %}">jobs</a>
+                    </div>
+                    <div class="Footer_columns">
+                        <h1>Resources</h1>
+                        <a href="{% url 'community' %}">Tutorials</a>
+                        <a href="{% url 'careerpath' %}">Career paths</a>
+                        <a href="{% url 'community' %}">Courses</a>
+                        <a href="{% url 'community' %}">Blogs</a>
+                    </div>
+                    <div class="Footer_columns">
+                        <h1>Support</h1>
+                        <a href="{% url 'contact' %}">Contact us</a>
+                        <a href="{% url 'faq' %}">FAQ</a>
+                        <a href="{% url 'any_bugs' %}">Any ideas/Bugs</a>
+                        <a href="{% url 'invest' %}">Get Involved</a>
+                    </div>
+                    <div class="Footer_columns">
+                        <h1>Services</h1>
+                        <a href="##">Startup services</a>
+                        <a href="##">Design services</a>
+                        <a href="##">Mini Projects</a>
+                        <a href="##">Mock interviews</a>
+                    </div>
+                </div>
+                <div class="join_our desktop">
+                    <p>Join our newsletter</p>
+                    <form class="input_holder">
+                        <input type="text">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </footer>
+            <div class="join_our responsive">
+                <p>Join our newsletter</p>
+                <form class="input_holder">
+                    <input type="text">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            <div class="Privacy_holder">
+                <div class="Privacy_links">
+                    <a href="{% url 'privacy' %}">Privacy policy</a>
+                    <a href="{% url 'cookies' %}">Cookies Notice</a>
+                    <a href="{% url 'security' %}">Security</a>
+                    <a href="{% url 'terms' %}">Terms of use</a>
+                </div>
+                <div class="Social-media">
+                    <div class="image_conatiner">
+                        <a href="https://www.linkedin.com/company/74741373/">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png" id="link">
+                        </a>
+                        <a href="{% url 'contact' %}">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/2560px-Gmail_icon_%282020%29.svg.png" id="link">
+                        </a>
+                        <a href="https://trello.com/b/SMDt9NMY/techsnap-upcoming-releases">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC-APsSZXqFUpTTg9qvGW6D5hERazjQfAMkM0Oz6b9sC3uIwU4-_fD8CatVhbAUG4hz3g&usqp=CAU" id="link">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyRight">
+            Made with 💗 in india © 2021 Techsnap Educations LLP. All Rights
+				Reserved.
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+<script>
+new Splide( '.splide', {
+	type   : 'loop',
+	autoplay: true,
+	pagination : false,
+	arrows     : false,
+	perPage    : 2,
+	perMove    : 1,
+	focus  : 'center',
+	autoplay: true,
+	gap    : '1rem',
+	breakpoints : {
+		'600': {
+	perPage : 1,
+	gap    : '1rem'
+		}
+	},
+} ).mount();
+</script>
+<script src="main/nav-dropdown.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+		AOS.init({
+			duration: 900,
+			offset: 220,
+			easing: 'ease-in-out-quad',
+		});
+
+		const header = document.querySelector('.header');
+		const navLink = document.querySelectorAll('.nav_item');
+		const ham = document.querySelector('.ham');
+
+		window.addEventListener('scroll', () => {
+			const top = window.innerHeight * (15 / 100);
+			if (window.scrollY <= top) {
+				header.style.background = 'rgb(26, 25, 29)';
+				ham.style.background ="transparent";
+
+				header.style.height = '60px';
+				navLink.forEach((i) => {
+					i.style.color = '#fff';
+				});
+			}
+			if (window.scrollY > top) {
+				header.style.background = '#fff';
+				ham.style.background ="#0a33ec";
+				header.style.height = '55px';
+				navLink.forEach((i) => {
+					i.style.color = '#000';
+				});
+			}
+		});
+</script>
+<script>
+			//----------------------------
+
+		  const Close=document.querySelector(".Close");
+		    const DropMenu =document.querySelector('.dropMenu')
+		  ham.addEventListener('click',() => {
+			DropMenu.classList.add("MenuAnimation")
+			console.log('sdsd');
+
+		})
+		Close.addEventListener('click',() => {
+			DropMenu.classList.remove('MenuAnimation')
+
+		})
+	//-------
+</script>
+</html>
