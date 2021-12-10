@@ -16,12 +16,14 @@
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-L4D2PNVR8Z"></script>
         <script>
+        
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
 
 		gtag('config', 'G-L4D2PNVR8Z');
         </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
         <div class="mainBody">
@@ -128,6 +130,39 @@
                     <div class="dropdown-main-1-desc">
 
                     </div>
+                    
+
+                    <script>
+                    $(document).mouseup(function(e){
+                        var dp1 = $(".dropdown-main-1-desc");
+                        var dp2 = $(".dropdown-main-1-desc");
+                        var dp3 = $(".dropdown-main-1-desc");
+                        var dp4 = $(".dropdown-main-1-desc");
+                        var dp5 = $(".dropdown-main-1-desc");
+                        var dpc = $(".dropdown-container");                  
+                    
+                        if(!dp1.is(e.target) && dp1.has(e.target).length === 0){
+                            dp1.hide();
+                            dpc.hide();
+                        }
+                        if(!dp2.is(e.target) && dp2.has(e.target).length === 0){
+                            dp2.hide();
+                            dpc.hide();
+                        }
+                        if(!dp3.is(e.target) && dp3.has(e.target).length === 0){
+                            dp3.hide();
+                            dpc.hide();
+                        }
+                        if(!dp4.is(e.target) && dp3.has(e.target).length === 0){
+                            dp4.hide();
+                            dpc.hide();
+                    }
+                        if(!dp5.is(e.target) && dp5.has(e.target).length === 0){
+                            dp5.hide();
+                            dpc.hide();
+                        }
+                    });
+                    </script>
                     <div class="dropdown-main-2-desc">
                         <ul>
                             <li>
